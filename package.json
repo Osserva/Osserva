@@ -1,0 +1,19 @@
+{
+  "name": "osserva",
+  "version": "1.0.0",
+  "description": "symptom tracking application",
+  "main": "index.js",
+  "scripts": {
+    "test": "run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Osserva/Osserva.git"
+  },
+  "author": "Osserva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Osserva/Osserva/issues"
+  },
+  "homepage": "https://github.com/Osserva/Osserva#readme"
+}
