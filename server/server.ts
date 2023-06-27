@@ -29,7 +29,6 @@ app.use('*', (req, res) => {
 /**
  * Global error handler
  */
-
 app.use(
     (
       err: ErrorRequestHandler,
