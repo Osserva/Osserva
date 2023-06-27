@@ -15,13 +15,13 @@ interface UserController {
 const userController: UserController = {
   registerUser: async (req, res, next) => {
     try {
-      // 
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const text =
         'INSERT INTO users(username, password) VALUES($1, $2) RETURNING *';
       const values = [req.body.username, hashedPassword];
       const newUser = await db.query(text, values);
       res.locals.user = newUser.rows[0];
+      
       return next();
     } catch (error) {
       return next({
