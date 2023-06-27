@@ -30,7 +30,8 @@ const entryController: EntryController = {
     try {
       // add query text
       const query = '(user_id, date)';
-      const values = [req.body.userId];
+      // update values
+      const values = [req.body.userId, req.body.focuses, req.body.notes];
       const entry = await db.query(query, values);
       res.locals.entry = entry.rows;
       
@@ -46,7 +47,12 @@ const entryController: EntryController = {
 
   updateEntry: async (req, res, next) => {
     try {
-      
+      // add query text
+      const query = '(user_id, date)';
+      // update values
+      const values = [req.body.userId, req.body.focuses, req.body.notes];
+      const entry = await db.query(query, values);
+      res.locals.entry = entry.rows;
     } catch (error) {
       return next({
         log: `Error in updateEntry controller method: ${error}`,
