@@ -16,12 +16,12 @@ const userController: UserController = {
   registerUser: async (req, res, next) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      const text =
+      const query =
         'INSERT INTO users(username, password) VALUES($1, $2) RETURNING *';
       const values = [req.body.username, hashedPassword];
-      const newUser = await db.query(text, values);
+      const newUser = await db.query(query, values);
       res.locals.user = newUser.rows[0];
-      
+
       return next();
     } catch (error) {
       return next({
@@ -35,9 +35,9 @@ const userController: UserController = {
   loginUser: async (req, res, next) => {
     try {
       // Get user with the given username
-      const text = 'SELECT * FROM users WHERE username = $1';
+      const query = 'SELECT * FROM users WHERE username = $1';
       const values = [req.body.username];
-      const user = await db.query(text, values);
+      const user = await db.query(query, values);
 
       // If no user is found with this username, throw an error
       if (!user.rows.length) {
