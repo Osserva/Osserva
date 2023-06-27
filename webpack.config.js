@@ -19,11 +19,7 @@ module.exports = {
               ['@babel/preset-env', { targets: 'defaults' }],
               ['@babel/preset-react', { targets: 'defaults' }],
             ],
-<<<<<<< HEAD
-          }
-=======
-        }
->>>>>>> dev
+          },
         },
       },
       {

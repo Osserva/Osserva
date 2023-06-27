@@ -8,7 +8,7 @@ import Login from './Login';
 import Signup from './Signup';
 import path from 'path';
 
-//add logo to top of page
+//!! add Osserva logo to top of page
 
 const Main: React.FC = () => {
   return (
@@ -23,11 +23,10 @@ const Main: React.FC = () => {
   );
 };
 
-const root = createRoot(document.getElementById('app'));
+const root = createRoot(document.getElementById('app') as HTMLElement);
 
 root.render(
   <React.StrictMode>
-    
     <Main />
   </React.StrictMode>
 );

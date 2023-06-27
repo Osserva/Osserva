@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Osserva/Osserva#readme",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
     "@types/react": "^18.2.14",
     "bcrypt": "^5.1.0",
     "concurrently": "^8.2.0",
