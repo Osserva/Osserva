@@ -8,8 +8,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 //submit
 
 const App = () => {
-  const [modalOpen, setModal] = useState(false)
-  const focusItems = useSelector((state)=>state.getItems)
+  console.log('hello, this is the app');
 };
 
 export default App;
