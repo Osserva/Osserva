@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Osserva/Osserva#readme",
   "dependencies": {
+    "@material-ui/data-grid": "^4.0.0-alpha.37",
+    "@material-ui/icons": "^4.11.3",
     "@reduxjs/toolkit": "^1.9.5",
     "cookieparser": "^0.1.0",
     "cors": "^2.8.5",
@@ -25,8 +27,9 @@
     "jsdocs": "^1.0.0",
     "node": "^20.3.1",
     "pg": "^8.11.1",
-    "react": "^18.2.0",
+    "react": "^17.0.0",
     "react-redux": "^7.2.9",
+    "react-router-dom": "^6.14.0",
     "redux": "^4.2.1",
     "typescript": "^5.1.3"
   },
