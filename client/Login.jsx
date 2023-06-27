@@ -1,8 +1,8 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-//import styles from './LoginSignup.scss';
+import styles from './LoginSignup.scss';
 
-const Login: React.FC = () => {
+export default function Login() {
   const [validUser, setValidUser] = useState(false);
 
   const navigate = useNavigate();
@@ -13,23 +13,14 @@ const Login: React.FC = () => {
     }
   }, [navigate, validUser]);
 
-  interface User {
-    username: string;
-    password: string;
-  }
-
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const target = e.target as typeof e.target & {
-      username: { value: string };
-      password: { value: string };
-    };
-
-    const user = {
-      username: target.username.value,
-      password: target.password.value,
-    };
+    const user = {};
+    user.username = e.target.elements.username.value;
+    user.password = e.target.elements.password.value;
+    console.log('Username is', user.username);
+    console.log('Password is', user.password);
 
     fetch('/login', {
       method: 'POST',
@@ -77,6 +68,4 @@ const Login: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default Login;
+}

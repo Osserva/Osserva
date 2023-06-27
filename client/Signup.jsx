@@ -1,8 +1,8 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-//import styles from './LoginSignup.scss';
+import styles from './LoginSignup.scss';
 
-const Signup: React.FC = () => {
+export default function Signup() {
   const [userCreated, setUserCreated] = useState(false);
   const navigate = useNavigate();
 
@@ -12,23 +12,12 @@ const Signup: React.FC = () => {
     }
   });
 
-  interface User {
-    username: string;
-    password: string;
-  }
-
-  const handleSubmit = (e: FormEvent): void => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const target = e.target as typeof e.target & {
-      username: { value: string };
-      password: { value: string };
-    };
-
-    const user: User = {
-      username: target.username.value,
-      password: target.password.value,
-    };
+    const user = {};
+    user.username = e.target.elements.username.value;
+    user.password = e.target.elements.password.value;
 
     console.log(user);
 
@@ -72,6 +61,4 @@ const Signup: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default Signup;
+}

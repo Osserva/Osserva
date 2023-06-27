@@ -10,11 +10,11 @@ import path from 'path';
 
 //!! add Osserva logo to top of page
 
-const Main: React.FC = () => {
+const Main = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path='/' element={<App />} /> */}
+        <Route path='/' element={<App />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/error' element={<ErrorPage />} />
@@ -23,7 +23,7 @@ const Main: React.FC = () => {
   );
 };
 
-const root = createRoot(document.getElementById('app') as HTMLElement);
+const root = createRoot(document.getElementById('app'));
 
 root.render(
   <React.StrictMode>
