@@ -6,6 +6,7 @@ import express, {
     ErrorRequestHandler,
   } from 'express';
 import path from 'path';
+import userRouter from './routes/userRouter';
 
 const PORT = process.env.PORT || 3000;
 
@@ -14,6 +15,8 @@ const app: Express = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(cookieParser())
+
+app.use('/user', userRouter);
 
 app.get('/test', (req, res) => {
     res.status(200).send('Hello world');
