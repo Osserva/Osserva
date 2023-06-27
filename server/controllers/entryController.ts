@@ -14,7 +14,27 @@ module.exports = {
 }
 
 const entryController:EntryController = {
-
+  createEntry: async (req, res, next) => {
+    try {
+      
+    } catch (error) {
+      
+    }
+  },
+  getEntry: async (req, res, next) => {
+    try {
+      
+    } catch (error) {
+      
+    }
+  },
+  updateEntry: async (req, res, next) => {
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
 };
 
 export default entryController;
