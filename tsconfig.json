@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "types": ["node"],
+    "jsx": "react",
+    "pretty": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "outDir": "./build"
+  },
+  "exclude": ["node_modules"],
+  "include": ["./client/**/*"]
+}
