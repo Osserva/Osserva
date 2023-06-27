@@ -13,3 +13,8 @@ module.exports = {
   updateEntry: (req: Request, res: Response, next: NextFunction) => {}
 }
 
+const entryController:EntryController = {
+
+};
+
+export default entryController;
