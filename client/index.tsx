@@ -13,9 +13,9 @@ const Main: React.FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />} />
-        <Route path='/login' element={<Login />} />
+        {/* <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/error' element={<ErrorPage />} />
+        <Route path='/error' element={<ErrorPage />} /> */}
       </Routes>
     </BrowserRouter>
   );
