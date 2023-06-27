@@ -12,3 +12,4 @@ module.exports = {
   getEntry: (req: Request, res: Response, next: NextFunction) => {},
   updateEntry: (req: Request, res: Response, next: NextFunction) => {}
 }
+

@@ -1,3 +1,3 @@
 import express from 'express';
 
-const focusRouter = express.
+const focusRouter = express.Router();
