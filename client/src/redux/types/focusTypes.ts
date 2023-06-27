@@ -1,0 +1,1 @@
+//contain reducer action names

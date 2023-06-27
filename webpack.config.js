@@ -14,10 +14,12 @@ module.exports = {
         test: /\.jsx?/,
         exclude: /node-modules/,
         use: {
-          presets: [
-            ['@babel/preset-env', { targets: 'defaults' }],
-            ['@babel/preset-react', { targets: 'defaults' }],
-          ],
+          options: {
+            presets: [
+              ['@babel/preset-env', { targets: 'defaults' }],
+              ['@babel/preset-react', { targets: 'defaults' }],
+            ],
+          }
         },
       },
       {

@@ -1,0 +1,1 @@
+// reducer for main page
