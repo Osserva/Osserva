@@ -25,6 +25,12 @@ app1.use(express.urlencoded({ extended: true }));
 app2.use(express.json());
 app2.use(express.urlencoded({ extended: true }));
 
+app1.use(express.static('public'));
+app1.use(express.static('client'));
+
+app2.use(express.static('public'));
+app2.use(express.static('client'));
+
 // Routers
 app1.use('/user', userRouter);
 app1.use('/entry', entryRouter)

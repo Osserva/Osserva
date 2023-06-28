@@ -9,11 +9,14 @@ interface FocusController {
 
 const focusController: FocusController = {
   addFocus: async (req, res, next) => {
-    console.log('entered add focus');
+    console.log('entered addFocus');
     try {
       const query = 'INSERT INTO Focuses(user_id, focus_name, isTracking) VALUES($1, $2, $3);';
-      const values = [req.body.user, req.body.focus, true]
-      const focus = await db.query(query, values);
+      const { name } = req.body;
+      //TODO: remove user_id
+      const user_id = 1;
+      const values = [user_id, name, true];
+      await db.query(query, values);
 
       return next();
     } catch (error) {
@@ -24,14 +27,14 @@ const focusController: FocusController = {
       });
     }
   },
+
   getFocus: async (req, res, next) => {
-    console.log('entered get focus');
+    console.log('entered getFocus');
     try {
       const query = 'SELECT * FROM Focuses WHERE user_id = $1;';
-      // wasn't able to set the params with postman; set them here for testing
-      //*** req.body.isTracking
-      const values = [req.params.user];
-      // console.log('values: ', values)
+      //TODO: remove user_id
+      const user_id = 1;
+      const values = [user_id];
       const focus = await db.query(query, values);
       res.locals.focus = focus.rows;
 
@@ -44,6 +47,7 @@ const focusController: FocusController = {
       });
     }
   },
+
   viewData: async (req, res, next) => {
     try {
       const query = 'SELECT * FROM Focuses;';
