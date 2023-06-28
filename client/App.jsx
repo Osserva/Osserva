@@ -1,10 +1,8 @@
-import React, { FormEvent, useEffect, useState } from 'react';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
-import { setFocuses } from './src/redux/actions/actions';
-import { Dispatch } from 'redux';
-import * as types from './src/redux/types/focusTypes';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from './src/redux/actions/actions';
 import { Menu, MenuItem, Button } from '@mui/material';
+import FocusItem from './src/components/FocusItem';
 
 //hamburger menu
 //open modal
@@ -20,7 +18,7 @@ const App = () => {
   //! need endpoint from backend team
   async function getData() {
     try {
-      const data = await fetch('/a', {
+      const data = await fetch('/focus', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -29,18 +27,35 @@ const App = () => {
 
       const focusItems = await data.json();
 
-      await dispatch({ type: types.SET_FOCUSES, payload: focusItems });
+      await dispatch(actions.setFocuses(focusItems));
     } catch (err) {
       console.log(err);
     }
   }
 
-  function toggleModal () {
+  useEffect(getData, []);
+
+  function toggleModal() {
     if (modalState) setModalState(false);
     else setModalState(true);
   }
 
-  const state = useSelector((state) => {});
+  const focusArray = useSelector((state) => state.focusItems);
+  const date = useSelector((state) => state.date);
+  const user_id = useSelector((state) => state.user_id);
+
+  const ratingElements = [];
+
+  for (let focus of focusArray) {
+    ratingElements.push(
+      <FocusItem
+        _id={focus._id}
+        name={focus.focus_name}
+        rating = {focus.rating}
+        key={focus.id + user_id}
+      />
+    );
+  }
 
   return (
     <div id='mainContainer'>
@@ -74,6 +89,13 @@ const App = () => {
             <MenuItem onClick={toggleModal}>Trends</MenuItem>
           </Menu>
         </div>
+      </section>
+      <section>
+        <div id='ratingElements'>{ratingElements}</div>
+        <div id='note-form'></div>
+      </section>
+      <section>
+        <button>SUBMIT</button>
       </section>
     </div>
   );

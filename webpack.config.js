@@ -11,26 +11,26 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
-        exclude: /node-modules/,
-        use: {
-          options: {
-            presets: [
-              ['@babel/preset-env', { targets: 'defaults' }],
-              ['@babel/preset-react', { targets: 'defaults' }],
-            ],
+        test: /\.(ts|tsx)$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.js$|jsx/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+            },
           },
-        },
+        ],
+        exclude: /node_modules/,
       },
       {
-        test: /\.tsx?/,
-        exclude: /node-modules/,
-        use: ['ts-loader'],
-      },
-      {
-        test: /\.s?css/,
-        exclude: [/node_modules/],
+        test: /\.s?css$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
+        exclude: /node_modules/,
       },
     ],
   },
@@ -39,7 +39,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './public/index.html',
     }),
   ],
   devServer: {

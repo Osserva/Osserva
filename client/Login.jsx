@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import styles from './LoginSignup.scss';
+//import styles from './LoginSignup.scss';
 
 export default function Login() {
   const [validUser, setValidUser] = useState(false);

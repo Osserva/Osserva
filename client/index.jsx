@@ -14,8 +14,8 @@ const Main = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<App />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<Login />} />
+        <Route path='/app' element={<App />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/error' element={<ErrorPage />} />
       </Routes>
