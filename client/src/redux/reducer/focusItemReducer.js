@@ -3,7 +3,10 @@ import * as types from '../types/focusTypes';
 import { ActionType } from '../actions/actions';
 
 const initialState = {
-  focusItems: [{ _id: 1, focus_name: 'test', rating: 0 }],
+  focusItems: [
+    { _id: 1, focus_name: 'test', rating: 0 },
+    { _id: 2, focus_name: 'test2', rating: 0 },
+  ],
   date: '',
   userID: 0,
   notes: '',

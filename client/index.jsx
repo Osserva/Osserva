@@ -16,11 +16,11 @@ const Main = () => {
         <Routes>
           <Route
             exact
-            path='/login'
+            path='/'
             element={<Login />}
             errorElement={<ErrorPage />}
           />
-          <Route path='/' element={<App />} errorElement={<ErrorPage />} />
+          <Route path='/app' element={<App />} errorElement={<ErrorPage />} />
           <Route
             path='/signup'
             element={<Signup />}

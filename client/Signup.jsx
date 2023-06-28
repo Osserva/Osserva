@@ -8,7 +8,7 @@ export default function Signup() {
 
   useEffect(() => {
     if (userCreated) {
-      navigate('/login');
+      navigate('/');
     }
   });
 
@@ -40,45 +40,45 @@ export default function Signup() {
 
   return (
     <div className={styles.background}>
-      <div id="signupPage" className={styles.container}>
+      <div id='signupPage' className={styles.container}>
         <img
           className={styles.image}
-          src="./assets/LargeLogo.png"
-          alt="Osserva logo with lighthouse"
+          src='./assets/LargeLogo.png'
+          alt='Osserva logo with lighthouse'
         />
 
         <h1 className={styles.heading}>Create Account</h1>
 
-        <div className="credentialBox">
+        <div className='credentialBox'>
           <form onSubmit={handleSubmit} className={styles.form}>
             <div>
-              <label htmlFor="username" className={styles.formItem}>
+              <label htmlFor='username' className={styles.formItem}>
                 Username
               </label>
               <input
-                type="text"
-                name="username"
+                type='text'
+                name='username'
                 className={`${styles.formItem} ${styles.input}`}
               />
             </div>
             <div>
-              <label htmlFor="password" className={styles.formItem}>
+              <label htmlFor='password' className={styles.formItem}>
                 Password
               </label>
               <input
-                type="password"
-                name="password"
+                type='password'
+                name='password'
                 className={`${styles.formItem} ${styles.input}`}
               />
             </div>
             <button
-              type="submit"
+              type='submit'
               className={`${styles.primaryBtn} ${styles.btn}`}
             >
               Sign Up
             </button>
             <p className={styles.text}>Already a user?</p>
-            <Link to="/">
+            <Link to='/'>
               <button className={`${styles.secondaryBtn} ${styles.btn}`}>
                 Login
               </button>

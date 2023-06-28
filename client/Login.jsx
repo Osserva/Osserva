@@ -1,16 +1,13 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './LoginSignup.module.scss';
+
 
 export default function Login() {
   const [validUser, setValidUser] = useState(false);
   const [failLogin, setFailLogin] = useState(false);
 
   let navigate = useNavigate();
-
-  function loggedIn() {
-    if (validUser) return navigate('/app');
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,12 +29,13 @@ export default function Login() {
         if (!response.ok) {
           throw new Error('Failed to login');
         }
-        return response.json();
+        return response;
       })
       .then((data) => {
+        console.log(data);
         if (data.status === 202) {
           setValidUser(true);
-          loggedIn();
+          navigate('/app');
         }
       })
       .catch((error) => {
@@ -51,7 +49,7 @@ export default function Login() {
       <div className={styles.container}>
         <img
           className={styles.image}
-          src='./assets/LargeLogo.png'
+          src={'./assets/LargeLogo.png'}
           alt='Osserva logo with lighthouse'
         />
 

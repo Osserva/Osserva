@@ -41,7 +41,7 @@ const App = () => {
 
       const focusItems = await data.json();
 
-      if (!focus) getData();
+      if (!focusItems) getData();
       else await dispatch(actions.getEntries(focusItems));
     } catch (err) {
       console.log(err);
@@ -68,9 +68,26 @@ const App = () => {
         _id={focus._id}
         name={focus.focus_name}
         rating={focus.rating}
-        key={focus.id + state.user_id}
+        key={focus._id + state.user_id}
       />
     );
+  }
+
+  const submitEntry = () => {
+    fetch('/entry/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(
+        {
+          date: state.date,
+          ratings: state.focusItems,
+          notes: {
+            contents: state.notes,
+          }
+      }),
+    })
   }
 
   return (
@@ -117,7 +134,7 @@ const App = () => {
         <div id='note-form'></div>
       </section>
       <section className={styles.focusItemSection}>
-        <button className={`${styles.primaryBtn} ${styles.btn}`}>SUBMIT</button>
+        <button className={`${styles.primaryBtn} ${styles.btn}`} onClick={submitEntry}>SUBMIT</button>
       </section>
     </div>
   );
