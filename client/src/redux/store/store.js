@@ -7,3 +7,5 @@ const store = configureStore({
     focusItems: focusItemReducer,
   },
 });
+
+export default store;

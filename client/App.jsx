@@ -3,10 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import actions from './src/redux/actions/actions';
 import { Menu, MenuItem, Button } from '@mui/material';
 import FocusItem from './src/components/FocusItem';
+import styles from './App.module.scss';
 
-//hamburger menu
-//open modal
-//our focus item groupings
 //note
 //submit
 
@@ -16,24 +14,24 @@ const App = () => {
   const dispatch = useDispatch();
 
   //! need endpoint from backend team
-  async function getData() {
-    try {
-      const data = await fetch('/focus', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+  // async function getData() {
+  //   try {
+  //     const data = await fetch('/focus', {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     });
 
-      const focusItems = await data.json();
+  //     const focusItems = await data.json();
 
-      await dispatch(actions.setFocuses(focusItems));
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  //     await dispatch(actions.setFocuses(focusItems));
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
-  useEffect(getData, []);
+  // useEffect(getData, []);
 
   function toggleModal() {
     if (modalState) setModalState(false);
@@ -58,21 +56,21 @@ const App = () => {
   }
 
   return (
-    <div id="mainContainer">
+    <div id='mainContainer' className={styles.background}>
       <section>
         <div>
           <Button
-            id="demo-positioned-button"
+            id='demo-positioned-button'
             aria-controls={open ? 'demo-positioned-menu' : undefined}
-            aria-haspopup="true"
+            aria-haspopup='true'
             aria-expanded={open ? 'true' : undefined}
             onClick={toggleModal}
           >
             Menu
           </Button>
           <Menu
-            id="demo-positioned-menu"
-            aria-labelledby="demo-positioned-button"
+            id='demo-positioned-menu'
+            aria-labelledby='demo-positioned-button'
             onClose={toggleModal}
             anchorOrigin={{
               vertical: 'top',
@@ -91,8 +89,8 @@ const App = () => {
         </div>
       </section>
       <section>
-        <div id="ratingElements">{ratingElements}</div>
-        <div id="note-form"></div>
+        <div id='ratingElements'>{ratingElements}</div>
+        <div id='note-form'></div>
       </section>
       <section>
         <button>SUBMIT</button>

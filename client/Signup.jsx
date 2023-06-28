@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './LoginSignup.module.scss';
 
@@ -21,7 +21,7 @@ export default function Signup() {
 
     console.log(user);
 
-    fetch('/signup', {
+    fetch('/user/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -39,11 +39,11 @@ export default function Signup() {
   };
 
   return (
-    <div className="styles.background">
+    <div className={styles.background}>
       <div id="signupPage" className={styles.container}>
         <img
           className={styles.image}
-          src="./assets/OsservaLargeLogo.png"
+          src="./assets/LargeLogo.png"
           alt="Osserva logo with lighthouse"
         />
 
@@ -78,7 +78,7 @@ export default function Signup() {
               Sign Up
             </button>
             <p className={styles.text}>Already a user?</p>
-            <Link to="/login">
+            <Link to="/">
               <button className={`${styles.secondaryBtn} ${styles.btn}`}>
                 Login
               </button>

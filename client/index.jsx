@@ -6,17 +6,29 @@ import ErrorPage from './Error-Page';
 //import './src/scss/App.scss';
 import Login from './Login';
 import Signup from './Signup';
+import { Provider } from 'react-redux';
+import store from './src/redux/store/store';
 
 const Main = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/app" element={<App />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/error" element={<ErrorPage />} />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            exact
+            path='/login'
+            element={<Login />}
+            errorElement={<ErrorPage />}
+          />
+          <Route path='/' element={<App />} errorElement={<ErrorPage />} />
+          <Route
+            path='/signup'
+            element={<Signup />}
+            errorElement={<ErrorPage />}
+          />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 };
 

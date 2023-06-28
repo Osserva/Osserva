@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './LoginSignup.module.scss';
 
 export default function Login() {
   const [validUser, setValidUser] = useState(false);
+  const [failLogin, setFailLogin] = useState(false);
 
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
-  useEffect(() => {
-    if (validUser) {
-      navigate('/');
-    }
-  }, [navigate, validUser]);
+  function loggedIn() {
+    if (validUser) return navigate('/app');
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,9 +19,9 @@ export default function Login() {
     user.username = e.target.elements.username.value;
     user.password = e.target.elements.password.value;
     console.log('Username is', user.username);
-    console.log('Password is', user.password);
+    console.log('Password is', typeof user.password);
 
-    fetch('/login', {
+    fetch('/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,12 +35,14 @@ export default function Login() {
         return response.json();
       })
       .then((data) => {
-        if (data.status === 201) {
+        if (data.status === 202) {
           setValidUser(true);
+          loggedIn();
         }
       })
       .catch((error) => {
         console.log(error);
+        setFailLogin(true);
       });
   };
 
@@ -50,44 +51,43 @@ export default function Login() {
       <div className={styles.container}>
         <img
           className={styles.image}
-          src="./assets/LargeLogo.png"
-          alt="Osserva logo with lighthouse"
+          src='./assets/LargeLogo.png'
+          alt='Osserva logo with lighthouse'
         />
 
         <h1 className={styles.heading}>Login</h1>
         <p>Please sign in to continue</p>
-
-        <div className="credentialBox">
+        {failLogin && <div> login failed</div>}
+        <div className='credentialBox'>
           <form onSubmit={handleSubmit} className={styles.form}>
             <div>
-              <label htmlFor="username" className={styles.formItem}>
+              <label htmlFor='username' className={styles.formItem}>
                 Username
               </label>
               <input
-                type="text"
-                name="username"
+                type='text'
+                name='username'
                 className={`${styles.formItem} ${styles.input}`}
               />
             </div>
             <div>
-              <label htmlFor="password" className={styles.formItem}>
+              <label htmlFor='password' className={styles.formItem}>
                 Password
               </label>
               <input
-                type="password"
-                name="password"
+                type='password'
+                name='password'
                 className={`${styles.formItem} ${styles.input}`}
               />
             </div>
-
             <button
-              type="submit"
+              type='submit'
               className={`${styles.primaryBtn} ${styles.btn}`}
             >
               Login
             </button>
             <p className={styles.text}>Don't have an account?</p>
-            <Link to="/signup">
+            <Link to={'/signup'}>
               <button className={`${styles.secondaryBtn} ${styles.btn}`}>
                 Sign Up
               </button>

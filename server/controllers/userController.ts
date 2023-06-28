@@ -11,6 +11,7 @@ interface UserController {
 const userController: UserController = {
   registerUser: async (req, res, next) => {
     try {
+      console.log(req);
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const query =
         'INSERT INTO users(username, password) VALUES($1, $2) RETURNING *';
@@ -18,7 +19,6 @@ const userController: UserController = {
       const newUser = await db.query(query, values);
       res.locals.user = newUser.rows[0];
       return next();
-
     } catch (error) {
       return next({
         log: `Error in registerUser controller method: ${error}`,
@@ -31,6 +31,7 @@ const userController: UserController = {
   loginUser: async (req, res, next) => {
     try {
       // Get user with the given username
+      console.log(req.body);
       const query = 'SELECT * FROM users WHERE username = $1';
       const values = [req.body.username];
       const user = await db.query(query, values);
@@ -43,7 +44,7 @@ const userController: UserController = {
       // Check if the password is correct. bcrypt.compare will hash the provided password and compare it to the stored hash.
       const match = await bcrypt.compare(
         req.body.password,
-        user.rows[0].password,
+        user.rows[0].password
       );
 
       // If the passwords do not match, throw an error
@@ -51,7 +52,7 @@ const userController: UserController = {
         throw new Error('Incorrect password');
       }
 
-      // create a JWT. The payload is the user's id, the secret key is stored in env, and it will expire in 1 hour 
+      // create a JWT. The payload is the user's id, the secret key is stored in env, and it will expire in 1 hour
       const token = jwt.sign(
         { user_id: user.rows[0].user_id },
         process.env.JWT_SECRET,
@@ -63,8 +64,8 @@ const userController: UserController = {
 
       res.locals.user = {
         token: token,
-        user: user.rows[0].username
-      }
+        user: user.rows[0].username,
+      };
 
       return next();
     } catch (err) {
@@ -79,7 +80,5 @@ const userController: UserController = {
     }
   },
 };
-
-
 
 export default userController;

@@ -56,12 +56,13 @@
 }
 
 .heading {
-  margin-top: 8px;
+  margin-top: 18px;
   margin-bottom: 2px;
+  font-size: 1.7rem;
 }
 
 p {
-  margin-top: 5px;
+  margin: 5px 0 15px 0;
 }
 
 .image {
@@ -135,6 +136,16 @@ p {
 }
 
 .secondaryBtn:hover {
+  background-image: linear-gradient(
+    to right,
+    #8bc6d0 0%,
+    #51739a 51%,
+    #8bc6d0 100%
+  );
+  color: white;
+}
+
+.secondaryBtn:focus {
   background-image: linear-gradient(
     to right,
     #8bc6d0 0%,
