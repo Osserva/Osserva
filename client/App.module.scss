@@ -1,4 +1,56 @@
 .background {
-  background-color: blue;
+  background-color: white;
+}
+
+.menuButton {
+  color: #507199
+}
+
+.focusItemSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  // flex: 1 1 auto;
+  font-family: 'Solway', serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 10px;
+  padding: 18px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  border: none;
+}
+
+.btn:hover {
+  background-position: right center;
+}
+
+.primaryBtn {
+  background-image: linear-gradient(
+    to right,
+    #8bc6d0 0%,
+    #51739a 51%,
+    #8bc6d0 100%
+  );
+  color: white;
+  padding: 18px 40px;
+  margin-top: 10px;
+}
+
+.secondaryBtn {
+  background-color: white;
+  color: #507199;
+  border: 1px solid #507199;
+  margin: 2px 0 15px 0;
+  padding: 12px 18px;
+  font-size: 0.7rem;
 }
 

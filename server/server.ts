@@ -1,11 +1,11 @@
 import express, {
-    Express,
-    Request,
-    Response,
-    NextFunction,
-    ErrorRequestHandler,
-  } from 'express';
-// import path from 'path';
+  Express,
+  Request,
+  Response,
+  NextFunction,
+  ErrorRequestHandler,
+} from 'express';
+import path from 'path';
 import userRouter from './routes/userRouter';
 import entryRouter from './routes/entryRouter';
 import focusRouter from './routes/focusRouter';
@@ -19,11 +19,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // app.use('/', () => {console.log('test')});
 app.use('/user', userRouter);
-app.use('/entry', entryRouter)
+app.use('/entry', entryRouter);
 app.use('/focus', focusRouter);
 
-app.use(express.static('public'));
-app.use(express.static('client'));
+app.use(express.static('../public'));
+app.use(express.static('../client'));
 
 app.get('/test', (req, res) => {
   res.status(200).send('Hello world');
@@ -33,7 +33,7 @@ app.get('/test', (req, res) => {
  * 404 handler
  */
 app.use('*', (req, res) => {
-  res.status(404).send('Not Found');
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 /**
@@ -57,6 +57,6 @@ app.use(
   }
 );
 
-  app.listen(PORT, () => console.log('listening on port ', PORT));
+app.listen(PORT, () => console.log('listening on port ', PORT));
 
-  export default app;
+export default app;

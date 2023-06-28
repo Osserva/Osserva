@@ -33,24 +33,27 @@ const App = () => {
 
   // useEffect(getData, []);
 
+  const getFocuses = async () => {
+    const focusArray = await fetch('/focus');
+  }
+
   function toggleModal() {
     if (modalState) setModalState(false);
     else setModalState(true);
   }
 
-  const focusArray = useSelector((state) => state.focusItems);
-  const date = useSelector((state) => state.date);
-  const user_id = useSelector((state) => state.user_id);
+  const state = useSelector((state) => state.focusItems);
+  console.log(state);
 
   const ratingElements = [];
 
-  for (let focus of focusArray) {
+  for (let focus of state.focusItems) {
     ratingElements.push(
       <FocusItem
         _id={focus._id}
         name={focus.focus_name}
         rating={focus.rating}
-        key={focus.id + user_id}
+        key={focus.id + state.user_id}
       />
     );
   }
@@ -65,6 +68,7 @@ const App = () => {
             aria-haspopup='true'
             aria-expanded={open ? 'true' : undefined}
             onClick={toggleModal}
+            className={styles.menuButton}
           >
             Menu
           </Button>
@@ -88,12 +92,17 @@ const App = () => {
           </Menu>
         </div>
       </section>
-      <section>
+      <img
+          className={styles.image}
+          src='../assets/SmallLogo.png'
+          alt='Osserva logo with lighthouse'
+        />
+      <section className={styles.focusItemsSection}>
         <div id='ratingElements'>{ratingElements}</div>
         <div id='note-form'></div>
       </section>
-      <section>
-        <button>SUBMIT</button>
+      <section className={styles.focusItemSection}>
+        <button className={`${styles.primaryBtn} ${styles.btn}`}>SUBMIT</button>
       </section>
     </div>
   );
