@@ -1,11 +1,14 @@
 import express, {
-  Express,
-  Request,
-  Response,
-  NextFunction,
-  ErrorRequestHandler,
-} from 'express';
-import path from 'path';
+    Express,
+    Request,
+    Response,
+    NextFunction,
+    ErrorRequestHandler,
+  } from 'express';
+// import path from 'path';
+import userRouter from './routes/userRouter';
+import entryRouter from './routes/entryRouter';
+import focusRouter from './routes/focusRouter';
 
 const PORT = process.env.PORT || 3000;
 
@@ -13,7 +16,11 @@ const app: Express = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(cookieParser())
+
+// app.use('/', () => {console.log('test')});
+app.use('/user', userRouter);
+app.use('/entry', entryRouter)
+app.use('/focus', focusRouter);
 
 app.use(express.static('public'));
 app.use(express.static('client'));
@@ -50,4 +57,6 @@ app.use(
   }
 );
 
-export default app.listen(PORT, () => console.log('listening on port ', PORT));
+  app.listen(PORT, () => console.log('listening on port ', PORT));
+
+  export default app;

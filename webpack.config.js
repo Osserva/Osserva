@@ -17,17 +17,19 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.js$|jsx/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-            },
+        test: /\.jsx?/,
+        exclude: /node-modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', { targets: 'defaults' }],
+              ['@babel/preset-react', { targets: 'defaults' }],
+            ],
           },
-        ],
-        exclude: /node_modules/,
+        },
       },
+
       {
         test: /\.s?css$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
