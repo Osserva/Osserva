@@ -11,9 +11,10 @@ userRouter.post(
     },
   );
   
-  userRouter.post('/login', userController.loginUser, (req, res, next) => {
+  userRouter.post('/login', 
     userController.loginUser,
-    res.status(204);
+    (req, res, next) => {
+    res.status(202).json(res.locals.user);
   });
 
   export default userRouter;

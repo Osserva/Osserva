@@ -54,4 +54,6 @@ app.use(
     },
   );
 
-  export default app.listen(PORT, () => console.log('listening on port ', PORT));
+  app.listen(PORT, () => console.log('listening on port ', PORT));
+
+  export default app;
