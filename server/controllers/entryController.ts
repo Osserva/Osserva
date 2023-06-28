@@ -2,20 +2,21 @@ import { Request, Response, NextFunction } from 'express';
 const db = require('../models/osservaModels');
 
 interface EntryController {
-  createEntry: (req: Request, res: Response, next: NextFunction) => void;
+  addEntry: (req: Request, res: Response, next: NextFunction) => void;
   getEntry: (req: Request, res: Response, next: NextFunction) => void;
   updateEntry: (req: Request, res: Response, next: NextFunction) => void;
+  viewData: (req: Request, res: Response, next: NextFunction) => void;
 }
 
 const entryController: EntryController = {
-  createEntry: async (req, res, next) => {
+  addEntry: async (req, res, next) => {
     console.log('entered create entry');
     try {
-      // add query text
-      const query = '(user_id, date)';
-      // add current date to values
-      const values = [req.params.userId];
-      // do we need to query the new entry at this point?
+      // update query text
+      const query = 'INSERT INTO Focus_ratings (date, rating, focus_id) VALUES ($1, $2, $3);'
+      // update values
+      const {date, rating, id} = req.body;
+      const values = [date, rating, id];
       await db.query(query, values);
       
       return next();
@@ -31,10 +32,10 @@ const entryController: EntryController = {
   getEntry: async (req, res, next) => {
     console.log('entered get entry');
     try {
-      // add query text
-      const query = '(user_id, date)';
+      // update query text
+      const query = 'SELECT * FROM Focus_ratings WHERE date = $1';
       // update values
-      const values = [req.params.userId];
+      const values = [req.body.date];
       const entry = await db.query(query, values);
       res.locals.entry = entry.rows;
       
@@ -62,6 +63,18 @@ const entryController: EntryController = {
         status: 400,
         message: 'Error while updating entry',
       });
+    }
+  },
+  viewData: async (req, res, next) => {
+    try {
+      const query = 'SELECT * FROM Focus_ratings;';
+      const result = await db.query(query);
+      console.log('Data:', result.rows);
+      res.locals.data = result.rows;
+
+      return next();
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
   }
 };

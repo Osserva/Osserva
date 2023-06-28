@@ -4,11 +4,15 @@ import authController from '../controllers/authController';
 
 const focusRouter = express.Router();
 
-focusRouter.get('/', authController.verifyToken, focusController.getFocus, (req, res) => {
-    return res.sendStatus(200);
+focusRouter.get('/', focusController.getFocus, (req, res) => {
+    return res.status(200).send(res.locals.focus);
 });
 
-focusRouter.post('/add', authController.verifyToken, focusController.createFocus, (req, res) => {
+focusRouter.get('/viewData', focusController.viewData, (req, res) => {
+    return res.status(200).send(res.locals.data);
+});
+
+focusRouter.post('/add', focusController.addFocus, (req, res) => {
     return res.sendStatus(200);
 })
 
