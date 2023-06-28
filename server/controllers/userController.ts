@@ -11,6 +11,7 @@ const userController: UserController = {
   registerUser: async (req, res, next) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      // update query
       const query =
         'INSERT INTO users(username, password) VALUES($1, $2) RETURNING *';
       const values = [req.body.username, hashedPassword];
@@ -30,6 +31,7 @@ const userController: UserController = {
   loginUser: async (req, res, next) => {
     try {
       // Get user with the given username
+      //update query
       const query = 'SELECT * FROM users WHERE username = $1';
       const values = [req.body.username];
       const user = await db.query(query, values);
