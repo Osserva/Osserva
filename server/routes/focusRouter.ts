@@ -4,14 +4,14 @@ import focusController from '../controllers/focusController';
 const focusRouter = express.Router();
 
 focusRouter.get('/', focusController.getFocus, (req, res) => {
-    return res.sendStatus(200);
+    return res.status(200).send(res.locals.focus);
 });
 
 focusRouter.get('/viewData', focusController.viewData, (req, res) => {
-    return res.sendStatus(200);
+    return res.status(200).send(res.locals.data);
 });
 
-focusRouter.post('/add', focusController.createFocus, (req, res) => {
+focusRouter.post('/add', focusController.addFocus, (req, res) => {
     return res.sendStatus(200);
 })
 

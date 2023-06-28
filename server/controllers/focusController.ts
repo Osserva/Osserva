@@ -2,21 +2,18 @@ import { Request, Response, NextFunction } from 'express';
 const db = require('../models/osservaModels');
 
 interface FocusController {
-  createFocus: (req: Request, res: Response, next: NextFunction) => void;
+  addFocus: (req: Request, res: Response, next: NextFunction) => void;
   getFocus: (req: Request, res: Response, next: NextFunction) => void;
   viewData: (req: Request, res: Response, next: NextFunction) => void;
 }
 
 const focusController: FocusController = {
-  createFocus: async (req, res, next) => {
-    console.log('entered create focus');
+  addFocus: async (req, res, next) => {
+    console.log('entered add focus');
     try {
-      // add query
       const query = 'INSERT INTO Focuses(user_id, focus_name, isTracking) VALUES($1, $2, $3);';
-      // const values = [req.body.focus];
-      const values = [2, 'focus 1', true]
+      const values = [req.body.user, req.body.focus, true]
       const focus = await db.query(query, values);
-      console.log(`retrieves focus ${focus.focus_id}`)
 
       return next();
     } catch (error) {
@@ -31,10 +28,12 @@ const focusController: FocusController = {
     console.log('entered get focus');
     try {
       const query = 'SELECT * FROM Focuses WHERE user_id = $1;';
-      // const values = [req.params.userId];
-      const values = [1]
+      // wasn't able to set the params with postman; set them here for testing
+      //*** req.body.isTracking
+      const values = [req.params.user];
+      // console.log('values: ', values)
       const focus = await db.query(query, values);
-      console.log(focus);
+      res.locals.focus = focus.rows;
 
       return next();
     } catch (error) {
@@ -50,6 +49,7 @@ const focusController: FocusController = {
       const query = 'SELECT * FROM Focuses;';
       const result = await db.query(query);
       console.log('Data:', result.rows);
+      res.locals.data = result.rows;
 
       return next();
     } catch (error) {
