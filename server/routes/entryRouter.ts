@@ -1,9 +1,10 @@
 import express from 'express';
 import entryController from '../controllers/entryController';
+import focusController from '../controllers/focusController';
 
 const entryRouter = express.Router();
 
-entryRouter.get('/', entryController.getEntry, (req, res) => {
+entryRouter.post('/', entryController.getEntry, (req, res) => {
     return res.status(200).send(res.locals.entry);
 });
 

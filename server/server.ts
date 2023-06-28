@@ -16,6 +16,8 @@ const app: Express = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+app.use(express.static('client'));
 
 // app.use('/', () => {console.log('test')});
 app.use('/user', userRouter);
