@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-//import styles from './LoginSignup.scss';
+import styles from './LoginSignup.module.scss';
 
 export default function Login() {
   const [validUser, setValidUser] = useState(false);
@@ -46,25 +46,54 @@ export default function Login() {
   };
 
   return (
-    <div id='loginPage'>
-      <div className='ProjectName'>Code Snippets</div>
+    <div className={styles.background}>
+      <div className={styles.container}>
+        <img
+          className={styles.image}
+          src="./assets/LargeLogo.png"
+          alt="Osserva logo with lighthouse"
+        />
 
-      <div className='credentialBox'>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor='username'>Username</label>
-            <input type='text' name='username' />
-          </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input type='password' name='password' />
-          </div>
+        <h1 className={styles.heading}>Login</h1>
+        <p>Please sign in to continue</p>
 
-          <button type='submit'>Login</button>
-          <Link to='/signup'>
-            <button>Sign Up</button>
-          </Link>
-        </form>
+        <div className="credentialBox">
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div>
+              <label htmlFor="username" className={styles.formItem}>
+                Username
+              </label>
+              <input
+                type="text"
+                name="username"
+                className={`${styles.formItem} ${styles.input}`}
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className={styles.formItem}>
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                className={`${styles.formItem} ${styles.input}`}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className={`${styles.primaryBtn} ${styles.btn}`}
+            >
+              Login
+            </button>
+            <p className={styles.text}>Don't have an account?</p>
+            <Link to="/signup">
+              <button className={`${styles.secondaryBtn} ${styles.btn}`}>
+                Sign Up
+              </button>
+            </Link>
+          </form>
+        </div>
       </div>
     </div>
   );
