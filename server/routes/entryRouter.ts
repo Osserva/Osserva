@@ -1,10 +1,10 @@
 import express from 'express';
 import entryController from '../controllers/entryController';
-import focusController from '../controllers/focusController';
+import authController from '../controllers/authController';
 
 const entryRouter = express.Router();
 
-entryRouter.post('/', entryController.getEntry, (req, res) => {
+entryRouter.get('/', entryController.getEntry, (req, res) => {
     return res.status(200).send(res.locals.entry);
 });
 
@@ -17,5 +17,3 @@ entryRouter.get('/viewData', entryController.viewData, (req, res) => {
     return res.status(200).send(res.locals.data);
 });
 
-
-export default entryRouter;
