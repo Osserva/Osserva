@@ -4,12 +4,16 @@ import authController from '../controllers/authController';
 
 const entryRouter = express.Router();
 
-entryRouter.post('/ratings', entryController.getEntry, (req, res) => {
-    return res.status(200).send(res.locals.ratings);
-});
+// entry:
 
 entryRouter.post('/', entryController.getEntry, entryController.getNotes, (req, res) => {
     return res.status(200).send({ratings: res.locals.ratings, notes: res.locals.notes});
+});
+
+// ratings:
+
+entryRouter.post('/ratings', entryController.getEntry, (req, res) => {
+    return res.status(200).send(res.locals.ratings);
 });
 
 entryRouter.post('/add', entryController.addEntry, (req, res) => {
