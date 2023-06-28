@@ -9,6 +9,7 @@ interface EntryController {
 
 const entryController: EntryController = {
   createEntry: async (req, res, next) => {
+    console.log('entered create entry');
     try {
       // add query text
       const query = '(user_id, date)';
@@ -16,6 +17,7 @@ const entryController: EntryController = {
       const values = [req.params.userId];
       // do we need to query the new entry at this point?
       await db.query(query, values);
+      
       return next();
     } catch (error) {
       return next({
@@ -27,6 +29,7 @@ const entryController: EntryController = {
   },
 
   getEntry: async (req, res, next) => {
+    console.log('entered get entry');
     try {
       // add query text
       const query = '(user_id, date)';
