@@ -14,7 +14,7 @@ entryRouter.post('/add', entryController.addRatings, entryController.addNotes, (
     return res.sendStatus(200);
 });
 
-// ratings:
+// ratings (only for development):
 
 entryRouter.post('/ratings', entryController.getRatings, (req, res) => {
     return res.status(200).send(res.locals.ratings);
@@ -28,7 +28,7 @@ entryRouter.get('/allRatings', entryController.getAllRatings, (req, res) => {
     return res.status(200).send(res.locals.data);
 });
 
-// notes:
+// notes (only for development):
 
 entryRouter.post('/addNotes', entryController.addNotes, (req, res) => {
     return res.sendStatus(200);
