@@ -7,11 +7,6 @@ interface UserController {
   loginUser: (req: Request, res: Response, next: NextFunction) => void;
 }
 
-// module.exports = {
-//   registerUser: (req: Request, res: Response, next: NextFunction) => {},
-//   // loginUser: (req: Request, res: Response, next: NextFunction) => {}
-// }
-
 const userController: UserController = {
   registerUser: async (req, res, next) => {
     try {
@@ -73,5 +68,7 @@ const userController: UserController = {
     }
   },
 };
+
+
 
 export default userController;

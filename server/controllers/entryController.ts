@@ -13,7 +13,7 @@ const entryController: EntryController = {
       // add query text
       const query = '(user_id, date)';
       // add current date to values
-      const values = [req.body.userId];
+      const values = [req.params.userId];
       // do we need to query the new entry at this point?
       await db.query(query, values);
       return next();
@@ -31,7 +31,7 @@ const entryController: EntryController = {
       // add query text
       const query = '(user_id, date)';
       // update values
-      const values = [req.body.userId, req.body.focuses, req.body.notes];
+      const values = [req.params.userId];
       const entry = await db.query(query, values);
       res.locals.entry = entry.rows;
       
@@ -48,9 +48,9 @@ const entryController: EntryController = {
   updateEntry: async (req, res, next) => {
     try {
       // add query text
-      const query = '(user_id, date)';
+      const query = '(user_id, date, entryData)';
       // update values
-      const values = [req.body.userId, req.body.focuses, req.body.notes];
+      const values = [req.params.userId, req.body.entry];
       const entry = await db.query(query, values);
       res.locals.entry = entry.rows;
     } catch (error) {
