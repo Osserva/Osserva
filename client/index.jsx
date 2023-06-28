@@ -6,18 +6,15 @@ import ErrorPage from './Error-Page';
 //import './src/scss/App.scss';
 import Login from './Login';
 import Signup from './Signup';
-import path from 'path';
-
-//!! add Osserva logo to top of page
 
 const Main = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/app' element={<App />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/error' element={<ErrorPage />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/app" element={<App />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/error" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );

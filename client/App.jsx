@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as actions from './src/redux/actions/actions';
+import actions from './src/redux/actions/actions';
 import { Menu, MenuItem, Button } from '@mui/material';
 import FocusItem from './src/components/FocusItem';
 
@@ -51,28 +51,28 @@ const App = () => {
       <FocusItem
         _id={focus._id}
         name={focus.focus_name}
-        rating = {focus.rating}
+        rating={focus.rating}
         key={focus.id + user_id}
       />
     );
   }
 
   return (
-    <div id='mainContainer'>
+    <div id="mainContainer">
       <section>
         <div>
           <Button
-            id='demo-positioned-button'
+            id="demo-positioned-button"
             aria-controls={open ? 'demo-positioned-menu' : undefined}
-            aria-haspopup='true'
+            aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             onClick={toggleModal}
           >
             Menu
           </Button>
           <Menu
-            id='demo-positioned-menu'
-            aria-labelledby='demo-positioned-button'
+            id="demo-positioned-menu"
+            aria-labelledby="demo-positioned-button"
             onClose={toggleModal}
             anchorOrigin={{
               vertical: 'top',
@@ -91,8 +91,8 @@ const App = () => {
         </div>
       </section>
       <section>
-        <div id='ratingElements'>{ratingElements}</div>
-        <div id='note-form'></div>
+        <div id="ratingElements">{ratingElements}</div>
+        <div id="note-form"></div>
       </section>
       <section>
         <button>SUBMIT</button>
