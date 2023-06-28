@@ -70,19 +70,6 @@ const entryController: EntryController = {
       });
     }
   },
-  
-  viewData: async (req, res, next) => {
-    try {
-      const query = 'SELECT * FROM Focus_ratings;';
-      const result = await db.query(query);
-      console.log('Data:', result.rows);
-      res.locals.data = result.rows;
-
-      return next();
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  },
 
   addNotes: async (req, res, next) => {
     console.log('entered addNotes');
@@ -107,16 +94,32 @@ const entryController: EntryController = {
 
   getNotes: async (req, res, next) => {
     try {
-      const query = 'SELECT * FROM Notes;';
-      const result = await db.query(query);
-      console.log('Data:', result.rows);
-      res.locals.notes = result.rows;
+      //TODO: add date
+      const query = 'SELECT * FROM Notes WHERE user_id = $1;';
+      //TODO: remove userId
+      const values = [1];
+      const notes = await db.query(query, values);
+      console.log('notes:', notes.rows);
+      res.locals.notes = notes.rows;
 
       return next();
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  }
+  },
+
+  viewData: async (req, res, next) => {
+    try {
+      const query = 'SELECT * FROM Focus_ratings;';
+      const result = await db.query(query);
+      console.log('Data:', result.rows);
+      res.locals.data = result.rows;
+
+      return next();
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  },
 };
 
 export default entryController;
