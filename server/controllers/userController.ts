@@ -12,7 +12,6 @@ const userController: UserController = {
   registerUser: async (req, res, next) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      // update query
       const query =
         'INSERT INTO users(username, password) VALUES($1, $2) RETURNING *';
       const values = [req.body.username, hashedPassword];
@@ -32,7 +31,6 @@ const userController: UserController = {
   loginUser: async (req, res, next) => {
     try {
       // Get user with the given username
-      //update query
       const query = 'SELECT * FROM users WHERE username = $1';
       const values = [req.body.username];
       const user = await db.query(query, values);
@@ -55,7 +53,7 @@ const userController: UserController = {
 
       // create a JWT. The payload is the user's id, the secret key is stored in env, and it will expire in 1 hour 
       const token = jwt.sign(
-        { userId: user.rows[0].user_id },
+        { user_id: user.rows[0].user_id },
         process.env.JWT_SECRET,
         { expiresIn: '1h' }
       );

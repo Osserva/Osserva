@@ -25,6 +25,8 @@ const authController: authController = {
     message: 'Error while registering new user',
     })
   
+    res.locals.user_id = verified.user_id;
+
     return next();
   }
 }
