@@ -13,7 +13,6 @@ const App = () => {
 
   const dispatch = useDispatch();
 
-  
   async function getData() {
     try {
       const data = await fetch('/focus', {
@@ -42,17 +41,16 @@ const App = () => {
 
       const focusItems = await data.json();
 
-      if (!focus) getData()
-
-      else await dispatch(actions.updateFocuses(focusItems));
-      
+      if (!focus) getData();
+      else await dispatch(actions.getEntries(focusItems));
     } catch (err) {
       console.log(err);
     }
   }
 
-  useEffect(() => {getEntry()}, []);
-
+  useEffect(() => {
+    getEntry();
+  }, []);
 
   function toggleModal() {
     if (modalState) setModalState(false);
@@ -110,10 +108,10 @@ const App = () => {
         </div>
       </section>
       <img
-          className={styles.image}
-          src='../assets/SmallLogo.png'
-          alt='Osserva logo with lighthouse'
-        />
+        className={styles.image}
+        src='../assets/SmallLogo.png'
+        alt='Osserva logo with lighthouse'
+      />
       <section className={styles.focusItemsSection}>
         <div id='ratingElements'>{ratingElements}</div>
         <div id='note-form'></div>
