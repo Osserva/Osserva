@@ -94,6 +94,7 @@ const entryController: EntryController = {
     }
   },
 
+  // Only for development
   getAllNotes: async (req, res, next) => {
     console.log('entered getAllNotes')
     try {
@@ -108,7 +109,9 @@ const entryController: EntryController = {
     }
   },
 
+  // Only for development
   getAllRatings: async (req, res, next) => {
+    console.log('entered getAllRatings')
     try {
       const query = 'SELECT * FROM Focus_ratings;';
       const result = await db.query(query);
