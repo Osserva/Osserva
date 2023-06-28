@@ -1,21 +1,26 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Typography, Rating } from '@mui/material';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+import actions from "../redux/actions/actions";
 
+const dispatch = useDispatch();
 
-function RatingScale({ focusItem }) {
-  
+function RatingScale({ _id , rating}) {
 
   return (
     <div id="ratingScale">
-      {/* <Typography component="legend">Controlled</Typography> */}
       <Rating
         name="simple-controlled"
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
+        size="large"
+        value={rating}
+        onChange={(event) => {
+          dispatch(actions.updateRating({_id, rating: event.target.value}));
         }}
       />
     </div>
   )
 }
+
+export default RatingScale;
