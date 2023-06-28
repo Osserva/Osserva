@@ -13,29 +13,46 @@ const App = () => {
 
   const dispatch = useDispatch();
 
-  //! need endpoint from backend team
-  // async function getData() {
-  //   try {
-  //     const data = await fetch('/focus', {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     });
+  
+  async function getData() {
+    try {
+      const data = await fetch('/focus', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-  //     const focusItems = await data.json();
+      const focusItems = await data.json();
 
-  //     await dispatch(actions.setFocuses(focusItems));
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
-
-  // useEffect(getData, []);
-
-  const getFocuses = async () => {
-    const focusArray = await fetch('/focus');
+      await dispatch(actions.setFocuses(focusItems));
+    } catch (err) {
+      console.log(err);
+    }
   }
+
+  async function getEntry() {
+    try {
+      const data = await fetch('/entry', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const focusItems = await data.json();
+
+      if (!focus) getData()
+
+      else await dispatch(actions.updateFocuses(focusItems));
+      
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {getEntry()}, []);
+
 
   function toggleModal() {
     if (modalState) setModalState(false);
