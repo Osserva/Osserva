@@ -22,10 +22,14 @@ const app2: Express = express();
 app1.use(express.json());
 app1.use(express.urlencoded({ extended: true }));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
-app.use(express.static('client'));
+app2.use(express.json());
+app2.use(express.urlencoded({ extended: true }));
+
+app1.use(express.static('public'));
+app1.use(express.static('client'));
+
+app2.use(express.static('public'));
+app2.use(express.static('client'));
 
 // Routers
 app1.use('/user', userRouter);
