@@ -11,7 +11,7 @@ import proxy from 'http-proxy';
 const loadBalancer = proxy.createProxyServer();
 
 // Server Addresses
-const serverAddresses: string[] = ['http://localhost:4000','http://localhost:4001', 'http://localhost:4002'];
+const serverAddresses: string[] = ['http://localhost:4000','http://localhost:4001'];
 
 // Counter to keep track of next server to handle a request
 let currentServerIndex: number = 0;
