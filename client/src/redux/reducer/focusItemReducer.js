@@ -28,20 +28,20 @@ const focusItemReducer = (state = initialState, action) => {
       return { ...tempState };
     }
 
-    case types.SET_FOCUSES: {
-      const tempState = Object.assign({}, state);
-      tempState.date = Date.now();
-      tempState.userID = action.payload[0].user_id;
+    case types.GET_ENTRIES: {
+      const focusItems = [];
+      const date = action.payload.notes.date;
+      const notes = action.payload.notes.contents;
       for (let i = 0; i < foci; i += 1) {
-        const foci = action.payload[i];
-        tempState.focusItems.push({
+        const foci = action.payload.ratings;
+        focusItems.push({
           _id: foci._id,
           focus_name: foci.focus_name,
-          rating: 0,
+          rating: foci.rating,
         });
       }
       // return updated state
-      return { ...tempState };
+      return { ...state, focusItems, date, notes };
     }
 
     case types.UPDATE_NOTE: {
@@ -49,16 +49,13 @@ const focusItemReducer = (state = initialState, action) => {
     }
 
     case types.UPDATE_RATING: {
-      const tempState = { ...state };
-      for (let elements of tempState.focusItems) {
+      let foci = JSON.parse(JSON.stringify(state.focusItems));
+      for (let elements of foci) {
         if (elements._id === action.payload[0]) {
-          console.log('2');
           elements.rating = action.payload[1];
-          console.log('3');
         }
       }
-      return { ...tempState };
-      break;
+      return { ...state, focusItems: foci };
     }
 
     default: {

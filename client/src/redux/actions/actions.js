@@ -9,5 +9,5 @@ actions.updateNote = createAction(types.UPDATE_NOTE);
 
 actions.updateRating = createAction(types.UPDATE_RATING);
 
-actions.updateFocuses = createAction(types.UPDATE_FOCUSES)
+actions.getEntries = createAction(types.GET_ENTRIES);
 export default actions;

@@ -7,4 +7,4 @@ export const UPDATE_NOTE = 'UPDATE_NOTE';
 
 export const UPDATE_RATING = 'UPDATE RATING';
 
-export const UPDATE_FOCUSES = 'UPDATE_FOCUSES'
+export const GET_ENTRIES = 'GET_ENTRIES'
